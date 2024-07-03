@@ -10,7 +10,8 @@ public record CommentDetailDTO(
         String socialMedia,
         String photo,
         String dateTime,
-        int stars
+        int stars,
+        String content
 ) {
     public CommentDetailDTO(Comment comment) {
         this(
@@ -18,7 +19,8 @@ public record CommentDetailDTO(
                 comment.getSocialMedia(),
                 comment.getPhoto(),
                 comment.getDateTime().format(DateTimeFormatter.ofPattern("d MMMM, yyyy HH:mm", new Locale("pt", "BR"))),
-                comment.getStars()
+                comment.getStars(),
+                comment.getContent()
         );
     }
 }

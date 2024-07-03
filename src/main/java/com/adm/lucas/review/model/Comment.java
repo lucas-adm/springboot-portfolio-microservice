@@ -23,12 +23,14 @@ public class Comment {
     private String photo;
     private LocalDateTime dateTime = LocalDateTime.now(ZoneId.of("America/Sao_Paulo"));
     private int stars;
+    private String content;
 
-    public Comment(String name, String socialMedia, String photo, int stars) {
+    public Comment(String name, String socialMedia, String photo, int stars, String content) {
         this.name = name;
         this.socialMedia = socialMedia;
         this.photo = photo;
         this.stars = stars;
+        this.content = content;
     }
 
 }

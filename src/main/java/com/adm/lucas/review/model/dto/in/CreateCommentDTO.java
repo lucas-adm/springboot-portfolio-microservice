@@ -17,9 +17,13 @@ public record CreateCommentDTO(
         @NotNull(message = "Não pode ser nulo")
         @Min(value = 1)
         @Max(value = 5)
-        int stars
+        int stars,
+
+        @NotBlank(message = "Não deve ser vazio")
+        @Size(max = 777, message = "Deve ter até 777 caracteres")
+        String content
 ) {
     public Comment toComment() {
-        return new Comment(name, socialMedia, photo, stars);
+        return new Comment(name, socialMedia, photo, stars, content);
     }
 }
