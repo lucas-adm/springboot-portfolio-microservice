@@ -11,7 +11,7 @@ import java.time.ZoneId;
 import java.util.UUID;
 
 @Entity
-@Table
+@Table(name = "comments")
 @Data
 @NoArgsConstructor
 public class Comment {
