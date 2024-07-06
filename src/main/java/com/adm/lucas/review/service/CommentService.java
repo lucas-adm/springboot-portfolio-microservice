@@ -17,6 +17,10 @@ public class CommentService {
     private final CommentRepository repository;
 
     public Comment save(Comment comment) {
+        if (!comment.getSocialMedia().startsWith("http")) {
+            comment.setSocialMedia("https://" + comment.getSocialMedia());
+        }
+        comment.setSocialMedia(comment.getSocialMedia().replace("http://", "https://").toLowerCase());
         return repository.save(comment);
     }
 
@@ -26,6 +30,14 @@ public class CommentService {
 
     public Page<Comment> getPage(Pageable pageable) {
         return repository.findAll(pageable);
+    }
+
+    public int getTotal() {
+        return repository.findAll().size();
+    }
+
+    public Double getAvg() {
+        return repository.findAvg();
     }
 
 }

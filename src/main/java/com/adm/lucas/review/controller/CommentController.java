@@ -3,6 +3,7 @@ package com.adm.lucas.review.controller;
 import com.adm.lucas.review.model.Comment;
 import com.adm.lucas.review.model.dto.in.CreateCommentDTO;
 import com.adm.lucas.review.model.dto.out.CommentDetailDTO;
+import com.adm.lucas.review.model.dto.out.CommentNumbersDTO;
 import com.adm.lucas.review.service.CommentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -44,6 +45,11 @@ public class CommentController {
     public ResponseEntity<List<CommentDetailDTO>> getComments(@PageableDefault(size = 10, sort = {"stars"}, direction = Sort.Direction.DESC) Pageable pageable) {
         Page<Comment> page = service.getPage(pageable);
         return ResponseEntity.status(HttpStatus.OK).body(page.map(CommentDetailDTO::new).getContent());
+    }
+
+    @GetMapping("/numbers")
+    public ResponseEntity<CommentNumbersDTO> getNumbers() {
+        return ResponseEntity.status(HttpStatus.OK).body(new CommentNumbersDTO(service.getTotal(), service.getAvg()));
     }
 
 }
